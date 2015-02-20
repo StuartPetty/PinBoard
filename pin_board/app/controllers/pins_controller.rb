@@ -1,6 +1,6 @@
 class PinsController < ApplicationController
 
-	before_action :find_pin, only: [:show, :edit, :update, :destroy]
+	before_action :find_pin, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
 	
 	def index
 		@pins = Pin.all.order("created_at DESC")
@@ -43,6 +43,12 @@ class PinsController < ApplicationController
 
 	end
 	private
+
+	def upvote
+		@pin.upvote_by current_user
+		redirect_to :back
+	end
+
 
 	def pin_params
 		params.require(:pin).permit(:title, :description, :image)
