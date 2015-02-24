@@ -1,3 +1,4 @@
+%meta{:name => @pin.description, :content => @pin.title}
 #pin_show.row
 	.col-md-8.col-md-offset-2
 		.panel.panel-default
@@ -12,11 +13,14 @@
 						%p.user
 							Submitted by
 							= @pin.user.email
+
 					.col-md-6
 						.btn-group.pull-right
-							
+						
 
 							
 							- if user_signed_in?
+								= link_to "Back", root_path, class: "btn btn-default"
 								= link_to "Edit", edit_pin_path, class: "btn btn-default"
 								= link_to "Delete", pin_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default"
+								
